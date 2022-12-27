@@ -10,7 +10,7 @@ conn = snowflake.connector.connect(
     schema= "PUBLIC")
 
 # # define schema for create table in snowflake
-sql_query = 'create table stock_prices_batch_1 if not exists( DATE DATE, Open NUMBER(10), High NUMBER(10), Low NUMBER(10), Close NUMBER(10), volume NUMBER(10));'
+sql_query = 'create table stock_prices if not exists( DATE DATE, Open NUMBER(10), High NUMBER(10), Low NUMBER(10), Close NUMBER(10), volume NUMBER(10));'
 
 # # execute query to create table in snowflake
 conn.cursor().execute(sql_query)
@@ -25,4 +25,4 @@ conn.cursor().execute("CREATE OR REPLACE FILE FORMAT Intermediate_Stage type ='c
 conn.cursor().execute("put file://./data/*.csv @Intermediate_Stage;")
 
 # # # copy data from stages to tables
-conn.cursor().execute("copy into stock_prices_batch_1 from @Intermediate_Stage/*.csv.gz  on_error = 'CONTINUE'")
+conn.cursor().execute("copy into stock_prices from @Intermediate_Stage/*.csv.gz  on_error = 'CONTINUE'")
