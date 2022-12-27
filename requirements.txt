@@ -1,0 +1,7 @@
+snowflake-sqlalchemy==1.4.3
+SQLAlchemy==1.4.44
+snowflake-connector-python==2.8.3
+scikit-learn==1.0.2
+scipy==1.4.1
+numpy==1.23.5
+snowflake-connector-python==2.8.3
